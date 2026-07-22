@@ -1,6 +1,8 @@
 {
-  "version": 2,
-  "builds": [{ "src": "**/*", "use": "@vercel/static" }],
+  "rewrites": [
+    { "source": "/(css|js|posts)/(.*)", "destination": "/$1/$2" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
   "headers": [
     {
       "source": "/posts/(.*)",
