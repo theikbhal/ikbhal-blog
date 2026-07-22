@@ -96,5 +96,19 @@
     "date": "July 24, 2026",
     "readTime": "2 min read",
     "excerpt": "New icon, UI improvements, clean TypeScript. Then the native build chain said no. 5 compiler errors in a C++ pod I never touched. The React Native tax."
+  },
+  {
+    "slug": "why-capcut-for-reels",
+    "title": "Why CapCut — And Why Mac Mini for Reels",
+    "date": "July 24, 2026",
+    "readTime": "2 min read",
+    "excerpt": "How I chose CapCut for batch reel creation on Mac Mini. Requirements, why mobile doesn't scale to 10 reels, and today's target of 50 DMs."
+  },
+  {
+    "slug": "experimenting-reel-tools",
+    "title": "Experimenting: Canva, VN Editor, and the CapCut That Wasn't There",
+    "date": "July 24, 2026",
+    "readTime": "3 min read",
+    "excerpt": "CapCut not found in India App Store. Tried Canva and VN Editor instead. ADHD tax paid in tool-switching. Settled on VN for today's 10 reels."
   }
 ]
