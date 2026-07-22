@@ -12,5 +12,12 @@
     "date": "July 22, 2026",
     "readTime": "4 min read",
     "excerpt": "The backstory, tech stack, UI decisions, and why there's no login. Building the ADHD-friendly win tracker I've wanted for years."
+  },
+  {
+    "slug": "submitting-to-app-store",
+    "title": "Submitting Little Wins to the App Store — Current Status",
+    "date": "July 22, 2026",
+    "readTime": "3 min read",
+    "excerpt": "What's done, what's left, and why I keep procrastinating on screenshots and certificates. Shipping by end of week."
   }
 ]
