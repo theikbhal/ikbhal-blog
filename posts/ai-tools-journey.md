@@ -45,6 +45,46 @@ Every few months, a new AI tool comes out. I try it. It's amazing. The free tier
 
 The ones that stick are the ones that stay free without crippling limits. OpenCode + DeepSeek V4 Flash is the first setup that's lasted more than a month.
 
+## Bonus: Project Tracker — The App I Built Because I Forget Everything
+
+I have a problem: I build things and then forget where I put them.
+
+I've got projects scattered across `~/Desktop/apps/`, `~/workspace/`, and random folders everywhere. I'd open a terminal, want to work on something, and spend 10 minutes trying to remember where the project lives, how to start it, and what I was even doing.
+
+So I built **Project Tracker** — a local macOS desktop app (Deno-based) that keeps track of every project I've ever started.
+
+### Where It Lives
+
+```
+/Users/ikbhal/workspace/dyno_desktop_workspace/v2local_projects/Project Tracker.app
+```
+
+### How I Use It
+
+Every project gets an entry with:
+- **Name** — what it's called
+- **Type** — website, script, android, ios, daemon, other
+- **Local path** — where to find it on disk
+- **Status** — active, paused, completed, archived
+- **How to start / stop** — so I don't have to remember the command
+- **GitHub repo** — link
+- **Vercel URL** — if deployed
+- **Notes** — why I started it, how it works, main goal
+
+Data is stored at `~/.project-tracker/projects.json`.
+
+### Quick Open
+
+```bash
+open "/Users/ikbhal/workspace/dyno_desktop_workspace/v2local_projects/Project Tracker.app"
+```
+
+### Why This Matters for ADHD
+
+The "what was I working on?" loop is one of the biggest time wasters. Every time I context-switch, I lose momentum trying to find where I left off. Project Tracker removes that friction — open the app, see all projects, pick one, the path and commands are right there.
+
+I still forget to update it sometimes. But when I remember, it saves me minutes of searching.
+
 ---
 
 *If you know other free setups that work well for coding, reach out. Always looking.*
