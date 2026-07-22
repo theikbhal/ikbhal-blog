@@ -117,5 +117,12 @@
     "date": "July 24, 2026",
     "readTime": "2 min read",
     "excerpt": "Conversations with OpenCode → saved to ~/Desktop/aichats/ → turned into blog posts → committed → Vercel deploys. The ADHD-friendly publishing pipeline."
+  },
+  {
+    "slug": "nap-at-145",
+    "title": "Nap at 1:45 — The ADHD Midday Reset",
+    "date": "July 24, 2026",
+    "readTime": "1 min read",
+    "excerpt": "Brain hits a wall at 1:45 PM. 15-20 minute nap, alarm set, then back to reels and coding. Non-negotiable part of the daily rhythm."
   }
 ]
