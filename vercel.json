@@ -1,6 +1,8 @@
 {
   "rewrites": [
-    { "source": "/(css|js|posts)/(.*)", "destination": "/$1/$2" },
+    { "source": "/css/(.*)", "destination": "/css/$1" },
+    { "source": "/js/(.*)", "destination": "/js/$1" },
+    { "source": "/posts/(.*)", "destination": "/posts/$1" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [
