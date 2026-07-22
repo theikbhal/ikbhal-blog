@@ -7,7 +7,6 @@ const CONTACTS = [
 ]
 
 const THEME_KEY = 'ikbhal-blog-theme'
-const SORT_KEY = 'ikbhal-blog-sort'
 const FILTER_KEY = 'ikbhal-blog-filter'
 
 let allPosts = []
@@ -29,13 +28,8 @@ function toggleTheme() {
   setTheme(getTheme() === 'dark' ? 'light' : 'dark')
 }
 
-function getSortOrder() {
-  return localStorage.getItem(SORT_KEY) || 'desc'
-}
-
 function setSortOrder(order) {
   sortOrder = order
-  localStorage.setItem(SORT_KEY, order)
 }
 
 function getActiveFilter() {
@@ -331,7 +325,7 @@ async function loadHome() {
 
   try {
     allPosts = await loadPosts()
-    sortOrder = getSortOrder()
+    sortOrder = 'desc'
     activeFilter = getActiveFilter()
     renderHome(allPosts)
   } catch {
