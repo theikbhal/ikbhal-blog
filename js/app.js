@@ -249,6 +249,28 @@ async function loadHome() {
 
 document.addEventListener('DOMContentLoaded', () => {
   setTheme(getTheme())
-  document.getElementById('theme-btn').addEventListener('click', toggleTheme)
+
+  const themeBtn = document.getElementById('theme-btn')
+  if (themeBtn) themeBtn.addEventListener('click', toggleTheme)
+
+  const helpBtn = document.getElementById('help-btn')
+  const helpOverlay = document.getElementById('help-overlay')
+  const helpClose = document.getElementById('help-close')
+
+  if (helpBtn && helpOverlay) {
+    helpBtn.addEventListener('click', () => {
+      helpOverlay.classList.remove('hidden')
+    })
+    helpOverlay.addEventListener('click', (e) => {
+      if (e.target === helpOverlay) helpOverlay.classList.add('hidden')
+    })
+    if (helpClose) {
+      helpClose.addEventListener('click', () => helpOverlay.classList.add('hidden'))
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') helpOverlay.classList.add('hidden')
+    })
+  }
+
   loadHome()
 })

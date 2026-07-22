@@ -13,7 +13,8 @@
     <header>
       <div class="header-inner">
         <a href="#" class="logo" data-nav="home">ikbhal</a>
-        <nav>
+        <nav class="header-nav">
+          <button id="help-btn" aria-label="How to use" title="How to use">?</button>
           <button id="theme-btn" aria-label="Toggle theme">🌙</button>
         </nav>
       </div>
@@ -25,7 +26,43 @@
 
     <footer>
       <p>Building in public. One little win at a time.</p>
+      <p><a href="https://github.com/theikbhal/ikbhal-blog" target="_blank" rel="noopener" class="footer-link">GitHub</a></p>
     </footer>
+  </div>
+
+  <div id="help-overlay" class="help-overlay hidden">
+    <div class="help-modal">
+      <div class="help-header">
+        <h2>How to Use</h2>
+        <button id="help-close" class="help-close">✕</button>
+      </div>
+      <div class="help-body">
+        <div class="help-section">
+          <h3>📝 Writing a Post</h3>
+          <p>Create a markdown file in <code>posts/&lt;slug&gt;.md</code> and add its metadata to <code>posts/manifest.json</code>. Commit & push — Vercel auto-deploys.</p>
+        </div>
+        <div class="help-section">
+          <h3>🔍 Filtering</h3>
+          <p>Click a month chip to show only posts from that month. Click "All" to reset. Filter is saved in your browser.</p>
+        </div>
+        <div class="help-section">
+          <h3>↕ Sorting</h3>
+          <p>Click <strong>↓ Newest</strong> or <strong>↑ Oldest</strong> to toggle sort direction. Your preference is saved.</p>
+        </div>
+        <div class="help-section">
+          <h3>📄 Export PDF</h3>
+          <p>Click the <strong>PDF</strong> button on the home page or <strong>Export PDF</strong> on a post page, then choose "Save as PDF" in the print dialog.</p>
+        </div>
+        <div class="help-section">
+          <h3>🎨 Theme</h3>
+          <p>Toggle between dark and light mode using the 🌙/☀️ button in the header.</p>
+        </div>
+        <div class="help-section">
+          <h3>🔗 Links</h3>
+          <p>Each post supports GitHub links, Vercel links, YouTube embeds, images, code blocks, and more. Just use standard markdown.</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
