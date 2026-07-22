@@ -385,7 +385,7 @@ async function loadHome() {
 
   try {
     allPosts = await loadPosts()
-    sortOrder = 'desc'
+    sortOrder = 'asc'
     activeFilter = getActiveFilter()
     renderHome(allPosts)
     updateActiveNav('home')
