@@ -47,7 +47,9 @@ function renderHome(posts) {
     return
   }
 
-  const list = posts.map(p => `
+  const sorted = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date))
+
+  const list = sorted.map(p => `
     <li class="post-item">
       <a href="#" class="post-link" data-post="${p.slug}">
         <div class="post-title">${escapeHtml(p.title)}</div>
