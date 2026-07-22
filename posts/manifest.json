@@ -110,5 +110,12 @@
     "date": "July 24, 2026",
     "readTime": "3 min read",
     "excerpt": "CapCut not found in India App Store. Tried Canva and VN Editor instead. ADHD tax paid in tool-switching. Settled on VN for today's 10 reels."
+  },
+  {
+    "slug": "my-build-in-public-workflow",
+    "title": "How I Build in Public — OpenCode + Desktop/Aichats Workflow",
+    "date": "July 24, 2026",
+    "readTime": "2 min read",
+    "excerpt": "Conversations with OpenCode → saved to ~/Desktop/aichats/ → turned into blog posts → committed → Vercel deploys. The ADHD-friendly publishing pipeline."
   }
 ]
