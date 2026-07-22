@@ -126,10 +126,13 @@ function renderHome(posts) {
   document.title = 'ikbhal — build in public'
 
   const filtered = posts.filter(p => matchesFilter(p, activeFilter))
-  const sorted = [...filtered].sort((a, b) => {
-    return sortOrder === 'desc'
+  const indexed = filtered.map((p, i) => ({ ...p, _idx: i }))
+  const sorted = indexed.sort((a, b) => {
+    const dateDiff = sortOrder === 'desc'
       ? new Date(b.date) - new Date(a.date)
       : new Date(a.date) - new Date(b.date)
+    if (dateDiff !== 0) return dateDiff
+    return sortOrder === 'desc' ? b._idx - a._idx : a._idx - b._idx
   })
 
   const groups = getDateGroups(posts)
