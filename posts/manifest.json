@@ -152,5 +152,19 @@
     "date": "July 24, 2026",
     "readTime": "2 min read",
     "excerpt": "fmt pod -> RCTReleaseLevel -> blank screen. 3 rounds of fighting the toolchain before the app ran. And why I almost closed the laptop each time."
+  },
+  {
+    "slug": "nap-postponed-mistake",
+    "title": "Nap at 2, Postponed to 3 — Mistake, Bath, 40 Mins Wasted",
+    "date": "July 25, 2026",
+    "readTime": "1 min read",
+    "excerpt": "Pushed nap from 2 to 3. Made a mistake out of frustration. 40 minutes wasted. Then took a bath and realised: ten minutes of water saves forty minutes of regret."
+  },
+  {
+    "slug": "feature-changes-settings",
+    "title": "Feature Changes — What We Added, Then Removed, Then Hid",
+    "date": "July 25, 2026",
+    "readTime": "3 min read",
+    "excerpt": "Focus and ParNotes removed. Settings grew. Deen and Test Data hidden behind dev mode. Astaghfirullah button defaults to off. The ADHD cycle of add → never use → remove."
   }
 ]
