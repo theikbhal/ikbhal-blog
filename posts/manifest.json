@@ -166,5 +166,12 @@
     "date": "July 25, 2026",
     "readTime": "3 min read",
     "excerpt": "Focus and ParNotes removed. Settings grew. Deen and Test Data hidden behind dev mode. Astaghfirullah button defaults to off. The ADHD cycle of add → never use → remove."
+  },
+  {
+    "slug": "content-engine",
+    "title": "Content Engine — PHP + SQLite Tracker for Daily Content Sprint",
+    "date": "July 22, 2026",
+    "readTime": "3 min read",
+    "excerpt": "Built a minimalistic, mobile-first, dark mode PHP app to track 50 DMs, 10 Reels, 1 YT Long, 25 Shorts daily. No framework, no auth, just SQLite and plain PHP."
   }
 ]
