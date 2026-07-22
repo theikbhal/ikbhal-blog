@@ -2,7 +2,7 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>ikbhal — build in public</title>
   <meta name="description" content="Building little things. Sharing the journey." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>" />
@@ -13,32 +13,35 @@
     <header>
       <div class="header-inner">
         <a href="#" class="logo" data-nav="home">ikbhal</a>
-        <nav class="header-nav">
-          <button id="home-btn" aria-label="Home" title="Home">🏠</button>
-          <button id="help-btn" aria-label="How to use" title="How to use">?</button>
+        <div class="header-actions">
           <button id="theme-btn" aria-label="Toggle theme">🌙</button>
-        </nav>
+        </div>
       </div>
     </header>
 
     <main id="main-content">
-      <!-- Rendered by JS -->
     </main>
 
-    <footer>
-      <p>Building in public. One little win at a time.</p>
-      <p>
-        <a href="https://github.com/theikbhal/ikbhal-blog" target="_blank" rel="noopener" class="footer-link">GitHub</a>
-        ·
-        <a href="https://buymeacoffee.com/theikbhal" target="_blank" rel="noopener" class="footer-link">Buy me a coffee</a>
-      </p>
-    </footer>
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-nav="home" id="nav-home">
+        <span class="nav-icon">🏠</span>
+        <span class="nav-label">Posts</span>
+      </button>
+      <button class="nav-item" id="nav-help">
+        <span class="nav-icon">?</span>
+        <span class="nav-label">About</span>
+      </button>
+      <button class="nav-item" id="nav-theme">
+        <span class="nav-icon" id="nav-theme-icon">🌙</span>
+        <span class="nav-label">Theme</span>
+      </button>
+    </nav>
   </div>
 
   <div id="help-overlay" class="help-overlay hidden">
     <div class="help-modal">
       <div class="help-header">
-        <h2>How to Use</h2>
+        <h2>About</h2>
         <button id="help-close" class="help-close">✕</button>
       </div>
       <div class="help-body">

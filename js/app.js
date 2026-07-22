@@ -1,9 +1,9 @@
 const CONTACTS = [
   { icon: '✉️', label: 'Email', value: 'theikbhal@gmail.com', href: 'mailto:theikbhal@gmail.com' },
-  { icon: '📱', label: 'Phone', value: '+91 9901014560', href: 'tel:+919901014560' },
   { icon: '📸', label: 'Instagram', value: '@theikbhhal', href: 'https://www.instagram.com/theikbhhal/' },
   { icon: '✕', label: 'X', value: '@theikbhal', href: 'https://x.com/theikbhal' },
   { icon: '▶️', label: 'YouTube', value: 'Muhammad Iqbal Labs', href: 'https://www.youtube.com/@muhammadiqballabs' },
+  { icon: '☕', label: 'Support', value: 'Buy me a coffee', href: 'https://buymeacoffee.com/theikbhal' },
 ]
 
 const THEME_KEY = 'ikbhal-blog-theme'
@@ -20,8 +20,10 @@ function getTheme() {
 function setTheme(theme) {
   document.documentElement.dataset.theme = theme
   localStorage.setItem(THEME_KEY, theme)
-  const btn = document.getElementById('theme-btn')
-  if (btn) btn.textContent = theme === 'dark' ? '🌙' : '☀️'
+  const headerBtn = document.getElementById('theme-btn')
+  if (headerBtn) headerBtn.textContent = theme === 'dark' ? '🌙' : '☀️'
+  const navIcon = document.getElementById('nav-theme-icon')
+  if (navIcon) navIcon.textContent = theme === 'dark' ? '🌙' : '☀️'
 }
 
 function toggleTheme() {
@@ -115,6 +117,20 @@ function matchesFilter(post, filter) {
   return key === filter
 }
 
+function formatTweetTime(dateStr) {
+  const d = new Date(dateStr)
+  const now = new Date()
+  const diffMs = now - d
+  const diffHrs = Math.floor(diffMs / 3600000)
+  const diffMins = Math.floor(diffMs / 60000)
+
+  if (diffMins < 1) return 'now'
+  if (diffMins < 60) return `${diffMins}m`
+  if (diffHrs < 24) return `${diffHrs}h`
+  if (diffHrs < 168) return `${Math.floor(diffHrs / 24)}d`
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+}
+
 function renderHome(posts) {
   const main = document.getElementById('main-content')
   document.title = 'ikbhal — build in public'
@@ -131,32 +147,46 @@ function renderHome(posts) {
 
   const groups = getDateGroups(posts)
   const sortLabel = sortOrder === 'desc' ? '↓ Newest' : '↑ Oldest'
+  const postCount = posts.length
 
   const filtersHtml = groups.length > 0 ? `
     <div class="filters">
       <button class="filter-chip${!activeFilter ? ' active' : ''}" data-filter="">All</button>
       ${groups.map(g => `
-        <button class="filter-chip${activeFilter === g.key ? ' active' : ''}" data-filter="${g.key}">${g.label} (${g.count})</button>
+        <button class="filter-chip${activeFilter === g.key ? ' active' : ''}" data-filter="${g.key}">${g.label}</button>
       `).join('')}
     </div>
   ` : ''
 
-  const controlsHtml = posts.length > 0 ? `
-    <div class="controls-bar">
-      <span class="control-label">Sort · Export</span>
-      <button class="control-btn sort-btn" id="sort-btn">↕ ${sortLabel}</button>
-      <button class="control-btn" id="export-btn">⤓ Export</button>
-      <div class="export-dropdown hidden" id="export-dropdown">
-        <button class="export-option" data-export="pdf">📄 PDF</button>
-        <button class="export-option" data-export="json">📋 JSON</button>
-        <button class="export-option" data-export="md">📝 Markdown</button>
+  main.innerHTML = `
+    <div class="profile-header">
+      <div class="profile-row">
+        <div class="profile-avatar">⚡</div>
+        <div class="profile-info">
+          <div class="profile-name">ikbhal</div>
+          <div class="profile-handle">@theikbhal</div>
+          <div class="profile-bio">Building little things. Sharing the journey.</div>
+          <div class="profile-meta">
+            <span class="profile-stat"><strong>${postCount}</strong> <span class="profile-stat-label">posts</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="tab-bar">
+        <button class="tab-item active">Posts</button>
       </div>
     </div>
-  ` : ''
-
-  main.innerHTML = `
+    <div class="controls-row">
+      <button class="control-btn-sm" id="sort-btn">↕ ${sortLabel}</button>
+      <button class="control-btn-sm" id="export-btn">⤓ Export</button>
+      <div class="export-wrapper">
+        <div class="export-dropdown hidden" id="export-dropdown">
+          <button class="export-option" data-export="pdf">📄 PDF</button>
+          <button class="export-option" data-export="json">📋 JSON</button>
+          <button class="export-option" data-export="md">📝 Markdown</button>
+        </div>
+      </div>
+    </div>
     ${filtersHtml}
-    ${controlsHtml}
     ${sorted.length === 0 ? `
       <div class="loading">No posts match this filter.</div>
     ` : `
@@ -164,9 +194,26 @@ function renderHome(posts) {
         ${sorted.map(p => `
           <li class="post-item">
             <a href="#" class="post-link" data-post="${p.slug}">
-              <div class="post-title">${escapeHtml(p.title)}</div>
-              <div class="post-meta">${p.date} · ${p.readTime}</div>
-              ${p.excerpt ? `<div class="post-excerpt">${escapeHtml(p.excerpt)}</div>` : ''}
+              <div class="tweet">
+                <div class="tweet-avatar">⚡</div>
+                <div class="tweet-body">
+                  <div class="tweet-header">
+                    <span class="tweet-name">ikbhal</span>
+                    <span class="tweet-handle">@theikbhal</span>
+                    <span class="tweet-dot">·</span>
+                    <span class="tweet-time">${formatTweetTime(p.date)}</span>
+                  </div>
+                  <div class="tweet-title">${escapeHtml(p.title)}</div>
+                  ${p.excerpt ? `<div class="tweet-excerpt">${escapeHtml(p.excerpt)}</div>` : ''}
+                  <div class="tweet-meta">${p.date} · ${p.readTime}</div>
+                  <div class="tweet-actions">
+                    <span class="tweet-action">💬</span>
+                    <span class="tweet-action">🔄</span>
+                    <span class="tweet-action">❤️</span>
+                    <span class="tweet-action">🔗</span>
+                  </div>
+                </div>
+              </div>
             </a>
           </li>
         `).join('')}
@@ -231,9 +278,10 @@ async function renderPost(slug) {
       <article>
         <div class="post-header">
           <div class="post-nav">
-            <a href="#" class="back-link" data-nav="home">← Back to posts</a>
-            <div class="export-wrapper">
-              <button class="control-btn" id="export-post-btn">⤓ Export</button>
+            <a href="#" class="back-link" data-nav="home">←</a>
+            <span style="font-weight:700;font-size:17px">Post</span>
+            <div class="post-nav-right">
+              <button class="control-btn" id="export-post-btn">⤓</button>
               <div class="export-dropdown hidden" id="export-post-dropdown">
                 <button class="export-option" data-export="pdf">📄 PDF</button>
                 <button class="export-option" data-export="json">📋 JSON</button>
@@ -242,8 +290,25 @@ async function renderPost(slug) {
               </div>
             </div>
           </div>
-          <h1 class="post-page-title">${escapeHtml(post.title)}</h1>
-          <div class="post-page-meta">${post.date} · ${post.readTime}</div>
+          <div class="tweet" style="margin-top:4px">
+            <div class="tweet-avatar">⚡</div>
+            <div class="tweet-body">
+              <div class="tweet-header">
+                <span class="tweet-name">ikbhal</span>
+                <span class="tweet-handle">@theikbhal</span>
+                <span class="tweet-dot">·</span>
+                <span class="tweet-time">${formatTweetTime(post.date)}</span>
+              </div>
+              <h1 class="post-page-title">${escapeHtml(post.title)}</h1>
+              <div class="post-page-meta">${post.date} · ${post.readTime}</div>
+              <div class="tweet-actions">
+                <span class="tweet-action">💬</span>
+                <span class="tweet-action">🔄</span>
+                <span class="tweet-action">❤️</span>
+                <span class="tweet-action">🔗</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="post-content">${html}</div>
       </article>
@@ -299,18 +364,13 @@ function renderContact() {
 }
 
 function renderContactItems() {
-  return CONTACTS.map(c => {
-    const value = c.href
-      ? `<a href="${c.href}" class="contact-value" target="_blank" rel="noopener">${escapeHtml(c.value)}</a>`
-      : `<span class="contact-value">${escapeHtml(c.value)}</span>`
-    return `
-      <div class="contact-item">
-        <span class="contact-icon">${c.icon}</span>
-        <span class="contact-label">${c.label}</span>
-        ${value}
-      </div>
-    `
-  }).join('')
+  return `
+    <div class="contact-grid">
+      ${CONTACTS.map(c => {
+        return `<a href="${c.href}" class="contact-chip" target="_blank" rel="noopener">${c.icon} ${escapeHtml(c.label)}</a>`
+      }).join('')}
+    </div>
+  `
 }
 
 function escapeHtml(text) {
@@ -328,21 +388,37 @@ async function loadHome() {
     sortOrder = 'desc'
     activeFilter = getActiveFilter()
     renderHome(allPosts)
+    updateActiveNav('home')
   } catch {
     renderHome([])
   }
 }
 
+function updateActiveNav(id) {
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'))
+  const nav = document.getElementById(`nav-${id}`)
+  if (nav) nav.classList.add('active')
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   setTheme(getTheme())
-
-  const homeBtn = document.getElementById('home-btn')
-  if (homeBtn) homeBtn.addEventListener('click', (e) => { e.preventDefault(); loadHome() })
 
   document.querySelector('.logo')?.addEventListener('click', (e) => {
     e.preventDefault()
     loadHome()
   })
+
+  document.getElementById('nav-home')?.addEventListener('click', (e) => {
+    e.preventDefault()
+    loadHome()
+  })
+
+  document.getElementById('nav-help')?.addEventListener('click', () => {
+    const overlay = document.getElementById('help-overlay')
+    if (overlay) overlay.classList.remove('hidden')
+  })
+
+  document.getElementById('nav-theme')?.addEventListener('click', toggleTheme)
 
   const themeBtn = document.getElementById('theme-btn')
   if (themeBtn) themeBtn.addEventListener('click', toggleTheme)
@@ -355,6 +431,9 @@ document.addEventListener('DOMContentLoaded', () => {
     helpBtn.addEventListener('click', () => {
       helpOverlay.classList.remove('hidden')
     })
+  }
+
+  if (helpOverlay) {
     helpOverlay.addEventListener('click', (e) => {
       if (e.target === helpOverlay) helpOverlay.classList.add('hidden')
     })
