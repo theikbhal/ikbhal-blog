@@ -40,5 +40,12 @@
     "date": "July 23, 2026",
     "readTime": "3 min read",
     "excerpt": "ChatGPT → Windsurf (paid) → Antigravity (free/paid) → OpenCode + DeepSeek V4 Flash Free. Why I can't afford AI credits, what I use instead, and the Project Tracker app I built because I forget where I deploy things."
+  },
+  {
+    "slug": "flutter-to-expo",
+    "title": "I Tried Flutter, Came Back to React Native + Expo",
+    "date": "July 24, 2026",
+    "readTime": "3 min read",
+    "excerpt": "Built one Android app in Flutter, never published it. Switched back to React Native + Expo for Little Wins. Dart vs JS, ecosystem size, dev experience, and why familiarity won."
   }
 ]
