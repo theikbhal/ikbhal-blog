@@ -325,10 +325,6 @@ async function renderPost(slug) {
         </div>
         <div class="post-content">${html}</div>
       </article>
-      <div class="contact-section">
-        <div class="contact-title">Connect</div>
-        ${renderContactItems()}
-      </div>
     `
 
     document.querySelector('[data-nav="home"]').addEventListener('click', (e) => {
@@ -365,25 +361,6 @@ async function renderPost(slug) {
       loadHome()
     })
   }
-}
-
-function renderContact() {
-  return `
-    <div class="contact-section">
-      <div class="contact-title">Connect</div>
-      ${renderContactItems()}
-    </div>
-  `
-}
-
-function renderContactItems() {
-  return `
-    <div class="contact-grid">
-      ${CONTACTS.map(c => {
-        return `<a href="${c.href}" class="contact-chip" target="_blank" rel="noopener">${c.icon} ${escapeHtml(c.label)}</a>`
-      }).join('')}
-    </div>
-  `
 }
 
 function escapeHtml(text) {
