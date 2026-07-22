@@ -14,6 +14,7 @@
       <div class="header-inner">
         <a href="#" class="logo" data-nav="home">ikbhal</a>
         <div class="header-actions">
+          <button id="about-btn" aria-label="About">?</button>
           <button id="theme-btn" aria-label="Toggle theme">🌙</button>
         </div>
       </div>
@@ -22,20 +23,6 @@
     <main id="main-content">
     </main>
 
-    <nav class="bottom-nav">
-      <button class="nav-item active" data-nav="home" id="nav-home">
-        <span class="nav-icon">🏠</span>
-        <span class="nav-label">Posts</span>
-      </button>
-      <button class="nav-item" id="nav-help">
-        <span class="nav-icon">?</span>
-        <span class="nav-label">About</span>
-      </button>
-      <button class="nav-item" id="nav-theme">
-        <span class="nav-icon" id="nav-theme-icon">🌙</span>
-        <span class="nav-label">Theme</span>
-      </button>
-    </nav>
   </div>
 
   <div id="help-overlay" class="help-overlay hidden">
@@ -46,28 +33,16 @@
       </div>
       <div class="help-body">
         <div class="help-section">
-          <h3>📝 Writing a Post</h3>
-          <p>Create a markdown file in <code>posts/&lt;slug&gt;.md</code> and add its metadata to <code>posts/manifest.json</code>. Commit & push — Vercel auto-deploys.</p>
+          <p>Building little things. Sharing the journey. Self-diagnosed ADHD, introvert, dad, building in public because it keeps me honest.</p>
         </div>
         <div class="help-section">
-          <h3>🔍 Filtering</h3>
-          <p>Click a month chip to show only posts from that month. Click "All" to reset. Filter is saved in your browser.</p>
+          <h3>Connect</h3>
+          <div class="contact-grid" style="margin-top:8px">
+          </div>
         </div>
-        <div class="help-section">
-          <h3>↕ Sorting</h3>
-          <p>Click <strong>↓ Newest</strong> or <strong>↑ Oldest</strong> to toggle sort direction. Your preference is saved.</p>
-        </div>
-        <div class="help-section">
-          <h3>📄 Export PDF</h3>
-          <p>Click the <strong>PDF</strong> button on the home page or <strong>Export PDF</strong> on a post page, then choose "Save as PDF" in the print dialog.</p>
-        </div>
-        <div class="help-section">
-          <h3>🎨 Theme</h3>
-          <p>Toggle between dark and light mode using the 🌙/☀️ button in the header.</p>
-        </div>
-        <div class="help-section">
-          <h3>🔗 Links</h3>
-          <p>Each post supports GitHub links, Vercel links, YouTube embeds, images, code blocks, and more. Just use standard markdown.</p>
+        <div class="help-section" style="border-top:1px solid var(--border);padding-top:16px;margin-top:8px">
+          <h3>About This Blog</h3>
+          <p>Built with plain HTML, CSS, JS + Markdown. Deployed on Vercel. No frameworks, no CMS, no tracking.</p>
         </div>
       </div>
     </div>

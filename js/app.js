@@ -22,8 +22,6 @@ function setTheme(theme) {
   localStorage.setItem(THEME_KEY, theme)
   const headerBtn = document.getElementById('theme-btn')
   if (headerBtn) headerBtn.textContent = theme === 'dark' ? '🌙' : '☀️'
-  const navIcon = document.getElementById('nav-theme-icon')
-  if (navIcon) navIcon.textContent = theme === 'dark' ? '🌙' : '☀️'
 }
 
 function toggleTheme() {
@@ -169,6 +167,10 @@ function renderHome(posts) {
           <div class="profile-meta">
             <span class="profile-stat"><strong>${postCount}</strong> <span class="profile-stat-label">posts</span></span>
           </div>
+          <div class="profile-links">
+            ${CONTACTS.map(c => `<a href="${c.href}" class="profile-link" target="_blank" rel="noopener">${c.icon}</a>`).join('')}
+            <button class="profile-link profile-about-btn" id="about-trigger">?</button>
+          </div>
         </div>
       </div>
       <div class="tab-bar">
@@ -219,7 +221,6 @@ function renderHome(posts) {
         `).join('')}
       </ul>
     `}
-    ${renderContact()}
   `
 
   document.querySelectorAll('[data-post]').forEach(el => {
@@ -228,6 +229,18 @@ function renderHome(posts) {
       renderPost(e.currentTarget.dataset.post)
     })
   })
+
+  document.getElementById('about-trigger')?.addEventListener('click', () => {
+    const overlay = document.getElementById('help-overlay')
+    if (overlay) overlay.classList.remove('hidden')
+  })
+
+  const helpContactGrid = document.querySelector('.help-body .contact-grid')
+  if (helpContactGrid) {
+    helpContactGrid.innerHTML = CONTACTS.map(c =>
+      `<a href="${c.href}" class="contact-chip" target="_blank" rel="noopener">${c.icon} ${escapeHtml(c.label)}</a>`
+    ).join('')
+  }
 
   document.querySelectorAll('.filter-chip').forEach(el => {
     el.addEventListener('click', () => {
@@ -388,7 +401,6 @@ async function loadHome() {
     sortOrder = 'asc'
     activeFilter = getActiveFilter()
     renderHome(allPosts)
-    updateActiveNav('home')
   } catch {
     renderHome([])
   }
@@ -408,17 +420,10 @@ document.addEventListener('DOMContentLoaded', () => {
     loadHome()
   })
 
-  document.getElementById('nav-home')?.addEventListener('click', (e) => {
-    e.preventDefault()
-    loadHome()
-  })
-
-  document.getElementById('nav-help')?.addEventListener('click', () => {
+  document.getElementById('about-btn')?.addEventListener('click', () => {
     const overlay = document.getElementById('help-overlay')
     if (overlay) overlay.classList.remove('hidden')
   })
-
-  document.getElementById('nav-theme')?.addEventListener('click', toggleTheme)
 
   const themeBtn = document.getElementById('theme-btn')
   if (themeBtn) themeBtn.addEventListener('click', toggleTheme)
