@@ -5,5 +5,12 @@
     "date": "July 22, 2026",
     "readTime": "2 min read",
     "excerpt": "Why I'm building in public and what I hope to achieve. Sharing the process, the failures, and the little wins along the way."
+  },
+  {
+    "slug": "little-wins-app",
+    "title": "Little Wins — The iPhone App",
+    "date": "July 22, 2026",
+    "readTime": "4 min read",
+    "excerpt": "The backstory, tech stack, UI decisions, and why there's no login. Building the ADHD-friendly win tracker I've wanted for years."
   }
 ]
