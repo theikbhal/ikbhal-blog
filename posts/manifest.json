@@ -138,5 +138,12 @@
     "date": "July 24, 2026",
     "readTime": "1 min read",
     "excerpt": "Testing Little Wins on simulator, app icon verification pending, launch delayed. Then the school run called. Real life > App Store. Back after pickup."
+  },
+  {
+    "slug": "testing-simulator-screenshots",
+    "title": "Testing Little Wins on iPhone Simulator — Screenshots & Screen Recording",
+    "date": "July 24, 2026",
+    "readTime": "2 min read",
+    "excerpt": "Yes, you can screenshot and screen record from iOS Simulator via terminal. Testing Little Wins on iPhone 17 simulator. Screenshots captured, App Store launch still pending."
   }
 ]
