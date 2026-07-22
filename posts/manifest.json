@@ -140,10 +140,17 @@
     "excerpt": "Testing Little Wins on simulator, app icon verification pending, launch delayed. Then the school run called. Real life > App Store. Back after pickup."
   },
   {
-    "slug": "testing-simulator-screenshots",
-    "title": "Testing Little Wins on iPhone Simulator — Screenshots & Screen Recording",
+    "slug": "build-error-fmt-pod",
+    "title": "Xcode Build Failed: The fmt Pod Strikes Again",
     "date": "July 24, 2026",
     "readTime": "2 min read",
-    "excerpt": "Yes, you can screenshot and screen record from iOS Simulator via terminal. Testing Little Wins on iPhone 17 simulator. Screenshots captured, App Store launch still pending."
+    "excerpt": "New icon, UI improvements, clean TypeScript. Then the native build chain said no. 5 compiler errors in a C++ pod I never touched. The React Native tax."
+  },
+  {
+    "slug": "build-hell-to-simulator",
+    "title": "From Build Hell to Running on Simulator",
+    "date": "July 24, 2026",
+    "readTime": "2 min read",
+    "excerpt": "fmt pod -> RCTReleaseLevel -> blank screen. 3 rounds of fighting the toolchain before the app ran. And why I almost closed the laptop each time."
   }
 ]
