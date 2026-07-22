@@ -89,5 +89,12 @@
     "date": "July 24, 2026",
     "readTime": "2 min read",
     "excerpt": "Target: 9:30 AM App Store launch. Reality: 5 blog posts and zero screenshots. Task aversion, ADHD switching, or burnout — probably all three."
+  },
+  {
+    "slug": "build-error-fmt-pod",
+    "title": "Xcode Build Failed: The fmt Pod Strikes Again",
+    "date": "July 24, 2026",
+    "readTime": "2 min read",
+    "excerpt": "New icon, UI improvements, clean TypeScript. Then the native build chain said no. 5 compiler errors in a C++ pod I never touched. The React Native tax."
   }
 ]
