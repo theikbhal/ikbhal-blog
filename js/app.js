@@ -336,6 +336,14 @@ async function loadHome() {
 document.addEventListener('DOMContentLoaded', () => {
   setTheme(getTheme())
 
+  const homeBtn = document.getElementById('home-btn')
+  if (homeBtn) homeBtn.addEventListener('click', (e) => { e.preventDefault(); loadHome() })
+
+  document.querySelector('.logo')?.addEventListener('click', (e) => {
+    e.preventDefault()
+    loadHome()
+  })
+
   const themeBtn = document.getElementById('theme-btn')
   if (themeBtn) themeBtn.addEventListener('click', toggleTheme)
 

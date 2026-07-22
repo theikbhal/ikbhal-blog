@@ -515,6 +515,28 @@ footer {
   align-items: center;
 }
 
+#home-btn {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#home-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--surface-hover);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
 #help-btn {
   width: 36px;
   height: 36px;
@@ -642,6 +664,7 @@ footer {
   .export-dropdown,
   .export-wrapper,
   #theme-btn,
+  #home-btn,
   #help-btn,
   .help-overlay {
     display: none !important;
