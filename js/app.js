@@ -60,6 +60,48 @@ async function loadPostContent(slug) {
   return res.text()
 }
 
+function downloadFile(content, filename, mime) {
+  const blob = new Blob([content], { type: mime })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = filename
+  a.click()
+  URL.revokeObjectURL(url)
+}
+
+function exportAllJSON(posts) {
+  const data = JSON.stringify(posts, null, 2)
+  downloadFile(data, 'ikbhal-blog-posts.json', 'application/json')
+}
+
+async function exportPostJSON(slug) {
+  const [posts, content] = await Promise.all([loadPosts(), loadPostContent(slug)])
+  const post = posts.find(p => p.slug === slug)
+  const data = JSON.stringify({ ...post, body: content }, null, 2)
+  downloadFile(data, `${slug}.json`, 'application/json')
+}
+
+async function exportPostMD(slug) {
+  const content = await loadPostContent(slug)
+  downloadFile(content, `${slug}.md`, 'text/markdown')
+}
+
+async function exportPostTXT(slug) {
+  const [posts, content] = await Promise.all([loadPosts(), loadPostContent(slug)])
+  const post = posts.find(p => p.slug === slug)
+  const text = `# ${post.title}\n${post.date} · ${post.readTime}\n\n${content.replace(/[#*`\[\]()>|_-]/g, '').replace(/\n{3,}/g, '\n\n')}`
+  downloadFile(text, `${slug}.txt`, 'text/plain')
+}
+
+async function exportAllMD() {
+  const posts = await loadPosts()
+  for (const p of posts) {
+    const content = await loadPostContent(p.slug)
+    downloadFile(content, `${p.slug}.md`, 'text/markdown')
+  }
+}
+
 function getDateGroups(posts) {
   const groups = {}
   for (const p of posts) {
@@ -93,7 +135,7 @@ function renderHome(posts) {
   const groups = getDateGroups(posts)
   const sortLabel = sortOrder === 'desc' ? '↓ Newest' : '↑ Oldest'
 
-  const filtersHtml = groups.length > 1 ? `
+  const filtersHtml = groups.length > 0 ? `
     <div class="filters">
       <button class="filter-chip${!activeFilter ? ' active' : ''}" data-filter="">All</button>
       ${groups.map(g => `
@@ -102,10 +144,16 @@ function renderHome(posts) {
     </div>
   ` : ''
 
-  const controlsHtml = groups.length > 1 ? `
+  const controlsHtml = posts.length > 0 ? `
     <div class="controls-bar">
-      <button class="control-btn sort-btn" id="sort-btn">${sortLabel}</button>
-      <button class="control-btn" id="pdf-btn">PDF</button>
+      <span class="control-label">Sort · Export</span>
+      <button class="control-btn sort-btn" id="sort-btn">↕ ${sortLabel}</button>
+      <button class="control-btn" id="export-btn">⤓ Export</button>
+      <div class="export-dropdown hidden" id="export-dropdown">
+        <button class="export-option" data-export="pdf">📄 PDF</button>
+        <button class="export-option" data-export="json">📋 JSON</button>
+        <button class="export-option" data-export="md">📝 Markdown</button>
+      </div>
     </div>
   ` : ''
 
@@ -149,9 +197,25 @@ function renderHome(posts) {
     renderHome(posts)
   })
 
-  document.getElementById('pdf-btn')?.addEventListener('click', () => {
-    window.print()
-  })
+  const exportBtn = document.getElementById('export-btn')
+  const exportDropdown = document.getElementById('export-dropdown')
+  if (exportBtn && exportDropdown) {
+    exportBtn.addEventListener('click', (e) => {
+      e.stopPropagation()
+      exportDropdown.classList.toggle('hidden')
+    })
+    document.addEventListener('click', () => exportDropdown.classList.add('hidden'), { once: false })
+    exportDropdown.querySelectorAll('.export-option').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        e.stopPropagation()
+        exportDropdown.classList.add('hidden')
+        const type = e.currentTarget.dataset.export
+        if (type === 'pdf') window.print()
+        else if (type === 'json') exportAllJSON(posts)
+        else if (type === 'md') exportAllMD()
+      })
+    })
+  }
 }
 
 async function renderPost(slug) {
@@ -171,7 +235,15 @@ async function renderPost(slug) {
         <div class="post-header">
           <div class="post-nav">
             <a href="#" class="back-link" data-nav="home">← Back to posts</a>
-            <button class="control-btn" id="pdf-post-btn">Export PDF</button>
+            <div class="export-wrapper">
+              <button class="control-btn" id="export-post-btn">⤓ Export</button>
+              <div class="export-dropdown hidden" id="export-post-dropdown">
+                <button class="export-option" data-export="pdf">📄 PDF</button>
+                <button class="export-option" data-export="json">📋 JSON</button>
+                <button class="export-option" data-export="md">📝 Markdown</button>
+                <button class="export-option" data-export="txt">📃 Text</button>
+              </div>
+            </div>
           </div>
           <h1 class="post-page-title">${escapeHtml(post.title)}</h1>
           <div class="post-page-meta">${post.date} · ${post.readTime}</div>
@@ -189,9 +261,26 @@ async function renderPost(slug) {
       loadHome()
     })
 
-    document.getElementById('pdf-post-btn')?.addEventListener('click', () => {
-      window.print()
-    })
+    const exportPostBtn = document.getElementById('export-post-btn')
+    const exportPostDropdown = document.getElementById('export-post-dropdown')
+    if (exportPostBtn && exportPostDropdown) {
+      exportPostBtn.addEventListener('click', (e) => {
+        e.stopPropagation()
+        exportPostDropdown.classList.toggle('hidden')
+      })
+      document.addEventListener('click', () => exportPostDropdown.classList.add('hidden'), { once: false })
+      exportPostDropdown.querySelectorAll('.export-option').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+          e.stopPropagation()
+          exportPostDropdown.classList.add('hidden')
+          const type = e.currentTarget.dataset.export
+          if (type === 'pdf') window.print()
+          else if (type === 'json') await exportPostJSON(slug)
+          else if (type === 'md') await exportPostMD(slug)
+          else if (type === 'txt') await exportPostTXT(slug)
+        })
+      })
+    }
   } catch {
     main.innerHTML = `
       <div class="error">Failed to load post. <a href="#" data-nav="home">Go back home</a></div>

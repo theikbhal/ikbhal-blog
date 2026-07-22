@@ -351,8 +351,16 @@ main {
   margin-bottom: 20px;
 }
 
+.control-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-right: auto;
+}
+
 .control-btn {
-  padding: 6px 14px;
+  padding: 6px 12px;
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--surface);
@@ -366,6 +374,56 @@ main {
 .control-btn:hover {
   border-color: var(--accent);
   color: var(--text);
+}
+
+/* Export dropdown */
+.controls-bar {
+  position: relative;
+}
+
+.export-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm, 8px);
+  overflow: hidden;
+  z-index: 100;
+  min-width: 160px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+.export-dropdown.hidden {
+  display: none;
+}
+
+.export-option {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  border: none;
+  background: none;
+  color: var(--text);
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s;
+}
+
+.export-option:last-child {
+  border-bottom: none;
+}
+
+.export-option:hover {
+  background: var(--surface-alt, var(--border));
+}
+
+.export-wrapper {
+  position: relative;
 }
 
 /* Post nav (back + export) */
@@ -545,6 +603,9 @@ footer {
   .controls-bar,
   .contact-section,
   .post-nav   .control-btn,
+  .control-label,
+  .export-dropdown,
+  .export-wrapper,
   #theme-btn,
   #help-btn,
   .help-overlay {
