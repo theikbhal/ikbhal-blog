@@ -47,5 +47,12 @@
     "date": "July 24, 2026",
     "readTime": "3 min read",
     "excerpt": "Built one Android app in Flutter, never published it. Switched back to React Native + Expo for Little Wins. Dart vs JS, ecosystem size, dev experience, and why familiarity won."
+  },
+  {
+    "slug": "holding-hands",
+    "title": "Morning Ideas, Holding Hands",
+    "date": "July 24, 2026",
+    "readTime": "2 min read",
+    "excerpt": "Three ideas this morning, before breakfast. The ADHD morning flood, the capture ritual, and the ones that stick."
   }
 ]
