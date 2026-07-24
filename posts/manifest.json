@@ -173,5 +173,19 @@
     "date": "July 22, 2026",
     "readTime": "3 min read",
     "excerpt": "Built a minimalistic, mobile-first, dark mode PHP app to track 50 DMs, 10 Reels, 1 YT Long, 25 Shorts daily. No framework, no auth, just SQLite and plain PHP."
+  },
+  {
+    "slug": "deploy-php-pomodoro-render-cli",
+    "title": "How I Deployed My PHP Pomodoro App to Render Using the Render CLI",
+    "date": "July 25, 2026",
+    "readTime": "3 min read",
+    "excerpt": "Installing the Render CLI, authenticating with Google SSO, setting the workspace, and deploying a PHP Docker app to Render from a Mac mini. Includes common errors and fixes."
+  }
+  {
+    "slug": "1000-things",
+    "title": "1000 Things — The Gamified Collection Tracker I Built in One Session",
+    "date": "July 25, 2026",
+    "readTime": "3 min read",
+    "excerpt": "25x40 grid, 13 cell types, 6 levels, confetti, bulk ops, calendar view. Built with Next.js + Supabase + Vercel in one hyperfocus session."
   }
 ]
